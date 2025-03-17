@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Notícias de última hora">
+    <meta name="keywords" content="notícias, tecnologia, política, economia">
+    <meta name="author" content="Seu Nome">
+    <title>Site de Notícias</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .color-box {
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #000;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+            margin: 20px auto;
+        }
+
+        @media (max-width: 420px) {
+            .color-box {
+                background-color: gray;
+            }
+
+            .color-box h2::before {
+                content: "Cinza";
+            }
+        }
+
+        @media (min-width: 421px) and (max-width: 768px) {
+            .color-box {
+                background-color: orange;
+            }
+
+            .color-box h2::before {
+                content: "Laranja";
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .color-box {
+                background-color: pink;
+            }
+
+            .color-box h2::before {
+                content: "Rosa";
+            }
+        }
+
+        @media (min-width: 1025px) and (max-width: 1080px) {
+            .color-box {
+                background-color: red;
+            }
+
+            .color-box h2::before {
+                content: "Vermelho";
+            }
+        }
+
+        @media (min-width: 1081px) and (max-width: 1366px) {
+            .color-box {
+                background-color: blue;
+            }
+
+            .color-box h2::before {
+                content: "Azul";
+            }
+        }
+
+        @media (min-width: 1367px) and (max-width: 1920px) {
+            .color-box {
+                background-color: yellow;
+                color: black;
+            }
+
+            .color-box h2::before {
+                content: "Amarelo";
+            }
+        }
+
+        @media (min-width: 1921px) {
+            .color-box {
+                background-color: green;
+            }
+
+            .color-box h2::before {
+                content: "Verde";
+            }
+        }
+
+        .folder-container {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .folder-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .content-wrapper {
+            display: none;
+        }
+
+        .content-wrapper.open {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="folder-container">
+        <button onclick="toggleContent('content-wrapper')" class="folder-button">📂 Abrir/Fechar Atividade 4</button>
+        <button onclick="toggleContent('atividade5-wrapper')" class="folder-button">📂 Abrir/Fechar Atividade5</button>
+    </div>
+
+    <div id="content-wrapper" class="content-wrapper">
+        <header>
+            <h1>Fatec Informações</h1>
+        </header>
+
+        <div class="container">
+            <main class="main-content">
+                <article class="news-item">
+                    <h2>Alunos infernizam professores durante aulas-online.</h2>
+                    <p>Durante uma aula-online, um professor da Fatec estava tendo dificuldades para aplicar sua aula e estava buscando ajuda dos alunos para tentar resolver, um aluno, então, abriu o microfone e deu uma sugestão curiosa.
+                        <br><br>Confira:
+                        <br><br>
+                        <video controls>
+                            <source src="video.mp4" type="video/mp4">
+                            Seu navegador não suporta a tag de vídeo.
+                        </video>
+                    </p>
+                </article>
+                <article class="news-item">
+                    <h2>Professores dando o troco?</h2>
+                    <p>O professor Dimas, da Fatec, conhecido na faculdade por ser o único professor que não passa reavaliação (ou seja, uma prova caso o aluno falhe na obtenção da nota mínima para passar durante o semestre) teve um episódio interessante durante uma rádio que estava ao vivo. 
+                        <br><br>Confira:
+                        <br><br>
+                        <audio controls>
+                            <source src="audio.ogg" type="audio/ogg">
+                            Seu navegador não suporta o elemento de áudio.
+                        </audio>
+                    </p>
+                </article>
+            </main>
+
+            <aside class="sidebar">
+                <div class="sidebar-widget">
+                    <h3>Notícias Populares</h3>
+                    <ul>
+                        <li><a href="https://g1.globo.com/sp/itapetininga-regiao/noticia/2024/06/12/fatec-denuncia-roubos-de-notebooks-nas-unidades-de-tatui-e-itu.ghtml">Roubaram as FATECs</a></li>
+                        <li><a href="https://g1.globo.com/sp/santos-regiao/noticia/2022/11/02/video-mostra-professor-chamando-aluna-de-grosseira-nordestina-durante-aula-em-sp-assista.ghtml">Professor acusa estudante</a></li>
+                    </ul>
+                </div>
+                <div class="sidebar-widget">
+                    <h3>Últimas Atualizações</h3>
+                    <ul>
+                        <li><a href="https://paralelo29.com.br/2025/02/19/dezoito-anos-apos-escandalo-da-operacao-rodin-fatec-volta-ao-foco-da-policia-federal-por-supostos-desvios-na-entidade/#google_vignette">Desvios de dinheiro</a></li>
+                    </ul>
+                </div>
+            </aside>
+        </div>
+
+        <footer>
+            <p>&copy; 2025, Fatec Informações. Todos os direitos reservados.</p>
+        </footer>
+    </div>
+
+    <div id="atividade5-wrapper" class="content-wrapper">
+        <h2 style="text-align: center;">Atividade 5 - Media Queries e Cores</h2>
+        <div class="color-box">
+            <h2></h2>
+        </div>
+    </div>
+
+    <script>
+        function toggleContent(id) {
+            var contentWrapper = document.getElementById(id);
+            contentWrapper.classList.toggle("open");
+        }
+    </script>
+
+</body>
+
+</html>
