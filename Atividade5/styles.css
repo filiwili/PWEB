@@ -1,0 +1,83 @@
+.color-box {
+    width: 500px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #000;
+    color: white;
+    font-size: 24px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+@media (max-width: 420px) {
+    .color-box {
+        background-color: gray;
+    }
+
+    .color-box h2::before {
+        content: "Cinza";
+    }
+}
+
+@media (min-width: 421px) and (max-width: 768px) {
+    .color-box {
+        background-color: orange;
+    }
+
+    .color-box h2::before {
+        content: "Laranja";
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .color-box {
+        background-color: pink;
+    }
+
+    .color-box h2::before {
+        content: "Rosa";
+    }
+}
+
+@media (min-width: 1025px) and (max-width: 1080px) {
+    .color-box {
+        background-color: red;
+    }
+
+    .color-box h2::before {
+        content: "Vermelho";
+    }
+}
+
+@media (min-width: 1081px) and (max-width: 1366px) {
+    .color-box {
+        background-color: blue;
+    }
+
+    .color-box h2::before {
+        content: "Azul";
+    }
+}
+
+@media (min-width: 1367px) and (max-width: 1920px) {
+    .color-box {
+        background-color: yellow;
+        color: black;
+    }
+
+    .color-box h2::before {
+        content: "Amarelo";
+    }
+}
+
+@media (min-width: 1921px) {
+    .color-box {
+        background-color: green;
+    }
+
+    .color-box h2::before {
+        content: "Verde";
+    }
+}
