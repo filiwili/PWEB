@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pesquisa de Opinião</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Pesquisa de Opinião da Silva</h1>
+    <form id="form">
+      <label>Idade:</label>
+      <input type="number" id="idade" min="1" required />
+
+      <label>Sexo:</label>
+      <select id="sexo" required>
+        <option value="">Selecione</option>
+        <option value="Feminino">Feminino</option>
+        <option value="Masculino">Masculino</option>
+        <option value="Outros">Outros</option>
+      </select>
+
+      <label>Opinião:</label>
+      <select id="opiniao" required>
+        <option value="">Selecione</option>
+        <option value="4">Ótimo</option>
+        <option value="3">Bom</option>
+        <option value="2">Regular</option>
+        <option value="1">Péssimo</option>
+      </select>
+
+      <button type="submit">Enviar</button>
+    </form>
+
+    <button id="encerrar">Conferir Pesquisa</button>
+
+    <div id="contador"></div>
+    <div id="resultado"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
