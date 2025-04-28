@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Atividade 11 - Funcionário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .funcionario {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Atividade 11: Funcionário</h1>
+    <div id="conteudo"></div>
+
+    <script>
+        const conteudo = document.getElementById('conteudo');
+
+        // Forma 1: Usando objeto literal
+        const Funcionario1_Literal = {
+            matricula: '001',
+            nome: 'Antônio Munari',
+            funcao: 'Desenvolvedora'
+        };
+        console.log("Forma 1 - Objeto Literal:", Funcionario1_Literal);
+
+        // Forma 2: Usando new Object()
+        const Funcionario1_NewObject = new Object();
+        Funcionario1_NewObject.matricula = '002';
+        Funcionario1_NewObject.nome = 'Dimas Ferreira';
+        Funcionario1_NewObject.funcao = 'Analista de Sistemas';
+        console.log("Forma 2 - new Object():", Funcionario1_NewObject);
+
+        // Forma 3: Usando função construtora
+        function Funcionario(matricula, nome, funcao) {
+            this.matricula = matricula;
+            this.nome = nome;
+            this.funcao = funcao;
+        }
+        const Funcionario1_Construtor = new Funcionario('003', 'Clara Ricioni', 'Gerente de Projetos');
+        console.log("Forma 3 - Função Construtora:", Funcionario1_Construtor);
+
+        // Função para criar HTML dos funcionários
+        function mostrarFuncionario(titulo, funcionario) {
+            conteudo.innerHTML += `
+                <div class="funcionario">
+                    <h2>${titulo}</h2>
+                    <p><strong>Matrícula:</strong> ${funcionario.matricula}</p>
+                    <p><strong>Nome:</strong> ${funcionario.nome}</p>
+                    <p><strong>Função:</strong> ${funcionario.funcao}</p>
+                </div>
+            `;
+        }
+
+        // printf da silva
+        mostrarFuncionario("Forma 1 - Objeto Literal", Funcionario1_Literal);
+        mostrarFuncionario("Forma 2 - new Object()", Funcionario1_NewObject);
+        mostrarFuncionario("Forma 3 - Função Construtora", Funcionario1_Construtor);
+    </script>
+</body>
+</html>
