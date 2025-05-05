@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    padding: 40px;
+  }
+  
+  .container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background-color: #add8e6;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  
+  label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+  }
+  
+  input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    box-sizing: border-box;
+  }
+  
+  .radios {
+    margin-top: 20px;
+  }
+  
+  .radios label {
+    font-weight: normal;
+    display: block;
+    margin-bottom: 8px;
+  }
+  
