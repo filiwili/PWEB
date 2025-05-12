@@ -1,0 +1,78 @@
+body {
+    background-color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    color: black;
+  }
+  
+  form {
+    width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #add8e6;
+    border-radius: 10px;
+  }
+  
+  h1 {
+    color: white;
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+    font-style: italic;
+  }
+  
+  input[type="text"] {
+    width: 300px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+  
+  input[type="email"] {
+    width: 500px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+  
+  textarea {
+    width: 300px;
+    height: 100px;
+    padding: 5px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+  }
+  
+  hr {
+    border: 1px solid white;
+    margin-bottom: 20px;
+  }
+  
+  .pesquisa {
+    text-align: center;
+    margin-top: 30px;
+  }
+  
+  .pesquisa b {
+    font-size: 18px;
+  }
+  
+  .pesquisa i {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  input[type="submit"],
+  input[type="reset"] {
+    padding: 5px 10px;
+    margin: 10px 5px 0 5px;
+  }
+  .botoes {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
