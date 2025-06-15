@@ -1,5 +1,6 @@
 Projeto final
 
-DEPLOY: https://fatebooks.vercel.app
+DEPLOY: https://projeto-final-lake-delta.vercel.app
+NOTA: As pastas estavam separadas "../img/ ; ../html/", contudo, o deploy estava falhando por causa do index.html, e só consegui resolver tirando todas as pastas
 
 DISCLAIMER: A logomarca utilizada neste projeto não foi criada por mim. Todos os direitos autorais e créditos referentes à logo pertencem aos seus respectivos autores e/ou proprietários legais (Facebook). A utilização da imagem tem fins exclusivamente acadêmicos e sem qualquer intenção comercial, sendo usada apenas para fins ilustrativos no contexto deste trabalho.
