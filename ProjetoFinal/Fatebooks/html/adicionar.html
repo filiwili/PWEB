@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Adicionar Livro - FateBooks</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <header>
+    <img src="../img/logo.png" alt="Logo da FateBooks" />
+    <h1>FateBooks</h1>
+  </header>
+
+  <main class="container">
+    <h2 id="tituloForm">Adicionar Livro</h2>
+    <form id="formLivro" novalidate>
+<div class="form-grid">
+    <input type="text" name="titulo" placeholder="Título" required />
+  <label for="imagem">Imagem da capa (opcional):</label>
+  <input type="file" id="imagem" name="imagem" accept="image/*" />
+  <img class="imagem-preview" id="previewImagem" style="display:none;" />
+
+  <input type="text" name="autor" placeholder="Autor" required />
+
+  <input type="number" name="anoPublicacao" placeholder="Ano de Publicação" required min="1000" max="2025" />
+  <input type="text" name="genero" placeholder="Gênero" />
+
+  <input type="text" name="editora" placeholder="Editora" />
+  <input type="text" name="idiomaOriginal" placeholder="Idioma Original" />
+
+  <input type="text" name="isbn" placeholder="ISBN" />
+  <input type="number" name="paginas" placeholder="Número de Páginas" min="1" />
+
+  <div class="rating-wrapper">
+    <label>Nota (0 a 5):</label>
+    <div class="stars">
+      <input type="number" name="notaUsuario" min="0" max="5" placeholder="Nota (0-5)" />
+      <div class="stars-display" id="exibirEstrelas"></div>
+    </div>
+  </div>
+
+  <textarea name="sinopse" placeholder="Sinopse"></textarea>
+</div>
+
+
+      <div class="buttons">
+        <button type="submit">Salvar</button>
+        <button type="button" onclick="window.location.href='meuslivros.html'">Cancelar</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    function getParam(param) {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(param);
+    }
+
+    function buscarLivro(id) {
+      const livros = JSON.parse(localStorage.getItem('livros') || '[]');
+      return livros.find(l => l.id === id);
+    }
+
+    function salvarLivro(livro) {
+      let livros = JSON.parse(localStorage.getItem('livros') || '[]');
+      const index = livros.findIndex(l => l.id === livro.id);
+
+      if (index > -1) {
+        livros[index] = livro;
+      } else {
+        livro.id = Date.now();
+        livros.push(livro);
+      }
+
+      localStorage.setItem('livros', JSON.stringify(livros));
+    }
+
+    function configurarFormularioLivro() {
+      const form = document.getElementById('formLivro');
+      const id = getParam('id');
+
+      if (id) {
+        const livro = buscarLivro(Number(id));
+        if (livro) {
+          document.getElementById('tituloForm').innerText = 'Editar Livro';
+          for (const chave in livro) {
+            if (form.elements[chave] && chave !== 'imagem') {
+              form.elements[chave].value = livro[chave];
+            }
+          }
+
+          if (livro.imagem) {
+            const img = document.getElementById('previewImagem');
+            img.src = livro.imagem;
+            img.style.display = 'block';
+          }
+        }
+      }
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const livro = {};
+        let valido = true;
+        let mensagemErro = '';
+        const anoAtual = new Date().getFullYear();
+
+        [...form.elements].forEach(el => el.classList.remove('campo-invalido'));
+
+        [...form.elements].forEach(campo => {
+          if (!campo.name || campo.type === 'file') return;
+
+          const valor = campo.type === 'number' ? Number(campo.value) : campo.value.trim();
+          livro[campo.name] = valor;
+
+          if ((campo.name === 'titulo' || campo.name === 'autor') && !valor) {
+            valido = false;
+            campo.classList.add('campo-invalido');
+            mensagemErro += `- O campo "${campo.placeholder}" é obrigatório.\n`;
+          }
+
+          if (campo.name === 'anoPublicacao' && (valor < 1000 || valor > anoAtual)) {
+            valido = false;
+            campo.classList.add('campo-invalido');
+            mensagemErro += `- O "Ano de Publicação" deve estar entre 1000 e ${anoAtual}.\n`;
+          }
+
+          if (campo.name === 'paginas' && valor < 0) {
+            valido = false;
+            campo.classList.add('campo-invalido');
+            mensagemErro += `- O número de páginas deve ser positivo.\n`;
+          }
+
+          if (campo.name === 'notaUsuario' && (valor < 0 || valor > 5)) {
+            valido = false;
+            campo.classList.add('campo-invalido');
+            mensagemErro += `- A nota deve estar entre 0 e 5.\n`;
+          }
+        });
+
+        if (!valido) {
+          alert('Corrija os seguintes erros antes de continuar:\n\n' + mensagemErro);
+          return;
+        }
+
+        if (id) {
+          livro.id = Number(id);
+        } else {
+          livro.dataAdicao = new Date().toLocaleDateString('pt-BR');
+        }
+
+        const arquivo = document.getElementById('imagem').files[0];
+        const mensagemSucesso = id ? 'Livro editado com sucesso!' : 'Livro adicionado com sucesso!';
+
+        if (arquivo) {
+          const reader = new FileReader();
+          reader.onload = () => {
+            livro.imagem = reader.result;
+            salvarLivro(livro);
+            alert(mensagemSucesso);
+            window.location.href = 'meuslivros.html';
+          };
+          reader.readAsDataURL(arquivo);
+        } else {
+          const livroExistente = id ? buscarLivro(Number(id)) : null;
+          livro.imagem = livroExistente?.imagem || '';
+          salvarLivro(livro);
+          alert(mensagemSucesso);
+          window.location.href = 'meuslivros.html';
+        }
+      });
+    }
+
+    configurarFormularioLivro();
+      // Exibir preview da imagem ao selecionar
+  document.getElementById('imagem').addEventListener('change', function () {
+    const arquivo = this.files[0];
+    const preview = document.getElementById('previewImagem');
+
+    if (arquivo) {
+      const leitor = new FileReader();
+      leitor.onload = function (e) {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+      };
+      leitor.readAsDataURL(arquivo);
+    } else {
+      preview.src = '';
+      preview.style.display = 'none';
+    }
+  });
+  </script>
+</body>
+</html>
